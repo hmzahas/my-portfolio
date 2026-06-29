@@ -80,7 +80,7 @@ const projects = [
     image: '/mockup/Gemini_Generated_Image_b1uolpb1uolpb1uo.png',
     description: 'Tools untuk mengubah file PDF ke PNG dengan cepat dan mudah dan bisa otomatis mengirimkan file ke whatsapp penerima.',
     stack: ['Tailwind', 'NextJs', 'React','Vercel', 'Github', 'Railway'],
-    demo: 'gate-send.vercel.app',
+    demo: 'https://gate-send.vercel.app/',
     repo: 'https://github.com/hmzahas/GateSend.git',
   },
 ];
