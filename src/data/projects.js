@@ -72,6 +72,17 @@ const projects = [
     demo: 'restaurant-iga.vercel.app',
     repo: 'https://github.com/hmzahas/Web-Iga.git',
   },
+  {
+    id: 8,
+    title: 'Gemini Generated',
+    category: ['Mobile'],
+    color: 'from-blue-500 to-cyan-500',
+    image: '/mockup/Gemini_Generated_Image_b1uolpb1uolpb1uo.png',
+    description: 'Proyek dengan visual yang dihasilkan menggunakan AI Gemini.',
+    stack: ['Figma', 'AI', 'Gemini'],
+    demo: '#',
+    repo: '#',
+  },
 ];
 
 export default projects;
