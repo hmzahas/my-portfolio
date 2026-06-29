@@ -21,7 +21,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <NavLink to="/" className="font-bold text-xl tracking-tighter" style={{ color: 'var(--text-primary)' }}>
-            HCY
+            PORTFOLIO.
           </NavLink>
 
           <div className="hidden md:flex gap-1 text-sm font-medium">
