@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { MapPin, Clock, Coffee, Gamepad2, Music, Code2, Download } from 'lucide-react';
 import allProjects from '../data/projects';
 
 const timeline = [
   { year: '2023', title: 'Learn basic Web Dev', desc: 'HTML, CSS, JavaScript dasar' },
-  { year: '2024', title: 'Learning Programming Languages ​and Tools', desc: 'PHP, Tailwind, NodeJs, Github' },
+  { year: '2024', title: 'Learning Programming Languages and Tools', desc: 'PHP, Tailwind, NodeJs, Github' },
   { year: '2025', title: 'Internship', desc: 'Mengerjakan proyek Magang pertama' },
   { year: '2026', title: 'Open to Work', desc: 'Siap bergabung tim profesional' },
 ];
@@ -22,7 +22,6 @@ const fadeUp = (delay = 0) => ({
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
   transition: { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] },
-  
 });
 
 const Counter = ({ value, suffix }) => {
@@ -45,20 +44,17 @@ const Counter = ({ value, suffix }) => {
   return <span ref={ref}>{count}{suffix}</span>;
 };
 
-// Reusable bento card
 const BCard = ({ children, className = '', style = {}, onClick }) => (
   <div
     onClick={onClick}
-    className={`rounded-2xl p-5 transition-all duration-300 ${onClick ? 'cursor-pointer' : ''} ${className}`}
-    style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)', ...style }}
+    className={`rounded-2xl p-6 transition-all duration-300 ${onClick ? 'cursor-pointer' : ''} ${className}`}
+    style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', ...style }}
     onMouseEnter={e => {
       e.currentTarget.style.borderColor = 'var(--border-hover)';
-      e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
       e.currentTarget.style.background = 'var(--bg-card-hover)';
     }}
     onMouseLeave={e => {
       e.currentTarget.style.borderColor = 'var(--border)';
-      e.currentTarget.style.boxShadow = 'var(--shadow-card)';
       e.currentTarget.style.background = 'var(--bg-card)';
     }}
   >
@@ -66,54 +62,110 @@ const BCard = ({ children, className = '', style = {}, onClick }) => (
   </div>
 );
 
+const JourneyAccordion = ({ items }) => {
+  const [open, setOpen] = useState(null);
+
+  return (
+    <div>
+      {items.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.08 }}
+          style={{ borderBottom: '1px solid var(--border)' }}
+        >
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full flex items-center justify-between px-6 py-4 text-left group transition-colors"
+            style={{ background: open === i ? 'var(--bg-card-hover)' : 'transparent' }}
+          >
+            <div className="flex items-center gap-6">
+              <span
+                className="text-2xl font-black leading-none tabular-nums flex-shrink-0"
+                style={{ color: open === i ? 'var(--color-accent)' : 'var(--text-muted)' }}
+              >
+                {item.year}
+              </span>
+              <span
+                className="text-sm font-semibold"
+                style={{ color: open === i ? 'var(--text-primary)' : 'var(--text-secondary)' }}
+              >
+                {item.title}
+              </span>
+            </div>
+            <motion.span
+              animate={{ rotate: open === i ? 45 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-lg flex-shrink-0"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              +
+            </motion.span>
+          </button>
+
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                className="overflow-hidden"
+              >
+                <div className="px-6 pb-5 flex gap-6 items-start">
+                  <div className="w-px self-stretch flex-shrink-0" style={{ background: 'var(--color-accent)', marginLeft: '2.8rem' }} />
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      ))}
+    </div>
+  );
+};
+
 const About = () => {
   return (
-    <main className="relative z-10 pt-28 pb-20 px-6">
-      <div className="max-w-5xl mx-auto">
+    <main className="relative z-10 pt-24 md:pt-32 pb-24 md:pb-32 px-6 md:px-16 lg:px-24">
+      <div>
 
         {/* Header */}
-        <motion.div {...fadeUp(0)} className="mb-12">
-          <p className="text-accent text-sm tracking-widest uppercase mb-3">Tentang Saya</p>
+        <motion.div {...fadeUp(0)} className="mb-16">
+          <p className="text-accent text-sm tracking-widest uppercase mb-4">Tentang Saya</p>
           <h1 className="text-5xl md:text-6xl font-bold" style={{ color: 'var(--text-primary)' }}>
             Kenalan <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
-              Yuk 👋
-            </span>
+            <span className="text-accent">Yuk 👋</span>
           </h1>
         </motion.div>
 
         {/* Split Layout */}
-        <div className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="flex flex-col md:flex-row gap-12 items-start">
 
           {/* LEFT — Sticky Photo Card */}
           <motion.div
             {...fadeUp(0.1)}
-            className="md:w-64 flex-shrink-0 md:sticky md:top-28"
+            className="md:w-64 flex-shrink-0 md:sticky md:top-32"
           >
             {/* Avatar Card */}
             <div
-              className="rounded-3xl overflow-hidden mb-4"
-              style={{
-                background: 'linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.15))',
-                border: '1px solid var(--border)',
-                boxShadow: 'var(--shadow-lg)',
-              }}
+              className="rounded-3xl overflow-hidden mb-6"
+              style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
             >
-              {/* Gradient header */}
-              <div
-                className="h-24 w-full"
-                style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7, #ec4899)' }}
-              />
-              {/* Avatar */}
-              <div className="px-5 pb-5">
-                <div className="relative mx-auto w-50 h-50 rounded-3xl overflow-hidden -mt-12 mb-3 border-4 border-white shadow-lg">
+              <div className="h-24 w-full" style={{ background: 'var(--accent)', opacity: 0.85 }} />
+              <div className="px-6 pb-6">
+                <div className="relative mx-auto w-50 h-50 rounded-3xl overflow-hidden -mt-12 mb-4 border-4 border-white shadow-lg">
                   <img src="/profile.jpeg" alt="Foto Hamzah" className="w-full h-full object-cover" />
                 </div>
-                <p className="font-bold text-2" style={{ color: 'var(--text-primary)' }}>HAMZAH CANDRA YUSUF</p>
+                <p className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>HAMZAH CANDRA YUSUF</p>
                 <div className="flex items-center gap-1.5 mt-2">
                   <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>FRESH GRADUATE</p>
                 </div>
-                <div className="flex items-center gap-1.5 mt-5">
+                <div className="flex items-center gap-2 mt-6">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
@@ -123,8 +175,8 @@ const About = () => {
               </div>
             </div>
 
-            {/* Info pills */}
-            <div className="space-y-2 mb-3">
+            {/* Info rows */}
+            <div className="space-y-3 mb-6">
               {[
                 { icon: MapPin, text: 'Indonesia 🇮🇩' },
                 { icon: Clock, text: 'WIB (UTC+7)' },
@@ -132,7 +184,7 @@ const About = () => {
                 <div
                   key={i}
                   className="flex items-center gap-3 rounded-xl px-4 py-3"
-                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-lg)',}}
+                  style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
                 >
                   <Icon size={14} className="text-accent flex-shrink-0" />
                   <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{text}</span>
@@ -140,14 +192,13 @@ const About = () => {
               ))}
             </div>
 
-            {/* FILE & Download CV Button */}
             <motion.a
               href="/CV%20Hamzah%20Candra%20Yusuf.pdf"
               download
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-2 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #a855f7)', boxShadow: '0 4px 15px rgba(99,102,241,0.3)' }}
+              style={{ background: '#6366f1' }}
             >
               <Download size={15} />
               Download CV
@@ -156,32 +207,32 @@ const About = () => {
 
           {/* RIGHT — Bento Grid */}
           <div className="flex-1 min-w-0">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
 
               {/* Bio — full width */}
               <motion.div {...fadeUp(0.15)} className="col-span-2">
                 <BCard>
-                  <p className="text-[11px] uppercase tracking-widest mb-3" style={{ color: 'var(--text-muted)' }}>Bio</p>
+                  <p className="text-[11px] uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>Bio</p>
                   <p className="leading-relaxed text-sm" style={{ color: 'var(--text-secondary)' }}>
-                    Saya adalah seorang <span style={{ color: 'var(--text-primary)' }}> Freshgraduate </span> SMK jurusan Rekayasa Perangkat Lunak yang tertarik pada bidang Frontend Developer yang passionate terhadap desain UI/UX, dan pengalaman pengguna yang berkesan.
+                    Saya adalah seorang <span style={{ color: 'var(--text-primary)' }}>Freshgraduate</span> SMK jurusan Rekayasa Perangkat Lunak yang tertarik pada bidang Frontend Developer yang passionate terhadap desain UI/UX, dan pengalaman pengguna yang berkesan.
                     Dari sana, saya membangun website modern yang responsif, interaktif, dan memberikan pengalaman pengguna yang nyaman.
                     Saya juga mengikuti pelatihan dibidang UI/UX Desain yang memperkuat pemahaman dalam proses desain.
                   </p>
-                  <p className="leading-relaxed text-sm mt-3" style={{ color: 'var(--text-secondary)' }}>
+                  <p className="leading-relaxed text-sm mt-4" style={{ color: 'var(--text-secondary)' }}>
                     Saya percaya bahwa produk digital yang baik bukan hanya berfungsi tapi juga memberikan
                     <span style={{ color: 'var(--text-primary)' }}> feeling</span> kepada penggunanya.
                   </p>
                 </BCard>
               </motion.div>
 
-              {/* Stats — 3 cards */}
+              {/* Stats */}
               {[
                 { value: allProjects.length, suffix: '+', label: 'Projects' },
                 { value: 3, suffix: '+', label: 'Years Exp' },
               ].map((s, i) => (
-                <motion.div key={i} {...fadeUp(0.2 + i * 0.05)} className={i === 2 ? 'col-span-2 sm:col-span-1' : ''}>
-                  <BCard className="text-center py-6">
-                    <p className="text-3xl font-black text-accent mb-1">
+                <motion.div key={i} {...fadeUp(0.2 + i * 0.05)}>
+                  <BCard className="text-center py-8">
+                    <p className="text-3xl font-black text-accent mb-2">
                       <Counter value={s.value} suffix={s.suffix} />
                     </p>
                     <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{s.label}</p>
@@ -189,15 +240,15 @@ const About = () => {
                 </motion.div>
               ))}
 
-{/* Hobbies */}
+              {/* Hobbies */}
               <motion.div {...fadeUp(0.35)} className="col-span-2 sm:col-span-1">
                 <BCard className="h-full">
-                  <p className="text-[11px] uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>Hobi</p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <p className="text-[11px] uppercase tracking-widest mb-5" style={{ color: 'var(--text-muted)' }}>Hobi</p>
+                  <div className="grid grid-cols-2 gap-3">
                     {hobbies.map(({ icon: Icon, label }, i) => (
                       <div
                         key={i}
-                        className="flex items-center gap-2 rounded-xl px-3 py-2"
+                        className="flex items-center gap-3 rounded-xl px-3 py-3"
                         style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}
                       >
                         <Icon size={14} className="text-accent" />
@@ -211,46 +262,45 @@ const About = () => {
               {/* Currently */}
               <motion.div {...fadeUp(0.38)} className="col-span-2 sm:col-span-1">
                 <BCard className="h-full flex flex-col justify-between">
-                  <p className="text-[11px] uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>Currently</p>
-                  <div className="space-y-3">
+                  <p className="text-[11px] uppercase tracking-widest mb-5" style={{ color: 'var(--text-muted)' }}>Currently</p>
+                  <div className="space-y-4">
                     {[
                       { dot: 'bg-green-400', text: 'Open to Work' },
                       { dot: 'bg-blue-400', text: 'Improving Skills' },
                       { dot: 'bg-purple-400', text: 'Building a Business' },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center gap-2">
+                      <div key={i} className="flex items-center gap-3">
                         <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${item.dot}`} />
-                        <span className="text-xs" style={{ color: 'var(--text-secondary)' }}>{item.text}</span>
+                        <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>{item.text}</span>
                       </div>
                     ))}
                   </div>
                 </BCard>
               </motion.div>
 
-              {/* Timeline — full width */}
+              {/* Timeline — accordion + horizontal track */}
               <motion.div {...fadeUp(0.45)} className="col-span-2">
-                <BCard>
-                  <p className="text-[11px] uppercase tracking-widest mb-6" style={{ color: 'var(--text-muted)' }}>Journey</p>
-                  <div className="relative">
-                    <div className="absolute left-[7px] top-0 bottom-0 w-px" style={{ background: 'var(--border)' }} />
-                    {timeline.map((item, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, x: 16 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1 }}
-                        className="relative pl-8 pb-6 last:pb-0"
-                      >
-                        <div
-                          className="absolute left-0 top-1 w-3.5 h-3.5 rounded-full bg-accent"
-                          style={{ border: '2px solid var(--bg)' }}
-                        />
-                        <p className="text-accent text-xs font-mono mb-0.5">{item.year}</p>
-                        <p className="font-semibold text-sm" style={{ color: 'var(--text-primary)' }}>{item.title}</p>
-                        <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{item.desc}</p>
-                      </motion.div>
-                    ))}
+                <BCard className="!p-0 overflow-hidden">
+                  <div className="px-6 pt-6 pb-4" style={{ borderBottom: '1px solid var(--border)' }}>
+                    <p className="text-[11px] uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Journey</p>
+                  </div>
+
+                  {/* Horizontal track */}
+                  <div className="px-6 pt-6 pb-2">
+                    <div className="relative flex items-center justify-between">
+                      <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'var(--border)' }} />
+                      {timeline.map((item, i) => (
+                        <div key={i} className="relative flex flex-col items-center gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-accent)' }} />
+                          <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>{item.year}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Accordion rows */}
+                  <div className="px-0 pb-0">
+                    <JourneyAccordion items={timeline} />
                   </div>
                 </BCard>
               </motion.div>

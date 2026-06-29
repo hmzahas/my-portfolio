@@ -54,24 +54,24 @@ const Contact = () => {
   };
 
   return (
-    <main className="relative z-10 pt-28 pb-20 px-6">
-      <div className="max-w-5xl mx-auto">
+    <main className="relative z-10 pt-24 md:pt-32 pb-24 md:pb-32 px-6 md:px-16 lg:px-24">
+      <div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
-          <p className="text-accent text-sm tracking-widest uppercase mb-3">Kontak</p>
+          <p className="text-accent text-sm tracking-widest uppercase mb-4">Kontak</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-            Mari <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Berkolaborasi</span>
+            Mari Berkolaborasi
           </h1>
           <p className="text-lg max-w-xl" style={{ color: 'var(--text-secondary)' }}>
             Punya proyek menarik atau ingin berkolaborasi? Saya selalu terbuka untuk diskusi baru.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-16">
 
           {/* Left */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
-            <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3 mb-8 w-fit">
+            <div className="flex items-center gap-3 bg-green-500/10 border border-green-500/20 rounded-xl px-4 py-3 mb-10 w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
@@ -79,7 +79,7 @@ const Contact = () => {
               <span className="text-green-400 text-sm font-medium">Available for new projects</span>
             </div>
 
-            <div className="space-y-4 mb-10">
+            <div className="space-y-6 mb-12">
               {info.map(({ icon: Icon, label, value }, i) => (
                 <motion.div key={i} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 + i * 0.1 }} className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}>
@@ -93,14 +93,14 @@ const Contact = () => {
               ))}
             </div>
 
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: 'var(--text-muted)' }}>Temukan Saya Di</p>
-            <div className="grid grid-cols-2 gap-3">
+            <p className="text-xs uppercase tracking-widest mb-6" style={{ color: 'var(--text-muted)' }}>Temukan Saya Di</p>
+            <div className="grid grid-cols-2 gap-4">
               {socials.map(({ icon: Icon, label, handle, href }, i) => (
                 <motion.a
                   key={i} href={href} target="_blank" rel="noreferrer"
                   initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + i * 0.08 }}
                   whileHover={{ y: -3 }}
-                  className="flex items-center gap-3 rounded-xl p-3 transition-all"
+                  className="flex items-center gap-3 rounded-xl p-4 transition-all"
                   style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--border-hover)'; e.currentTarget.style.background = 'var(--bg-card-hover)'; e.currentTarget.style.boxShadow = 'var(--shadow-md)'; }}
                   onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = 'var(--bg-card)'; e.currentTarget.style.boxShadow = 'var(--shadow-card)'; }}
@@ -135,8 +135,8 @@ const Contact = () => {
                 </motion.button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: 'var(--text-muted)' }}>Nama</label>
                     <input type="text" name="name" value={formState.name} onChange={handleChange} required placeholder="Nama kamu" className={inputClass} style={inputStyle} />

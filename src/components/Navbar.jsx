@@ -16,13 +16,12 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="fixed top-0 w-full z-40 px-6 py-4">
-        <div
-          className="max-w-7xl mx-auto flex justify-between items-center backdrop-blur-md rounded-full px-6 py-3"
-          style={{ background: 'var(--navbar-bg)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-navbar)' }}
-        >
+      <nav className="fixed top-0 w-full z-40 px-6 md:px-16 lg:px-24 py-5"
+        style={{ background: 'var(--bg)', borderBottom: '1px solid var(--border)' }}
+      >
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
           <NavLink to="/" className="font-bold text-xl tracking-tighter" style={{ color: 'var(--text-primary)' }}>
-            PORTFOLIO.
+            HCY
           </NavLink>
 
           <div className="hidden md:flex gap-1 text-sm font-medium">
@@ -32,11 +31,11 @@ const Navbar = () => {
                 to={to}
                 end={to === '/'}
                 className={({ isActive }) =>
-                  `px-4 py-2 rounded-full transition-all duration-200 ${isActive ? 'bg-accent text-white' : ''}`
+                  `px-4 py-2 rounded-lg transition-all duration-200 ${isActive ? 'bg-accent/10 text-accent' : ''}`
                 }
                 style={({ isActive }) => isActive ? {} : { color: 'var(--text-secondary)' }}
-                onMouseEnter={e => { if (!e.currentTarget.classList.contains('bg-accent')) e.currentTarget.style.color = 'var(--text-primary)'; }}
-                onMouseLeave={e => { if (!e.currentTarget.classList.contains('bg-accent')) e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                onMouseEnter={e => { if (!e.currentTarget.classList.contains('text-accent')) e.currentTarget.style.color = 'var(--text-primary)'; }}
+                onMouseLeave={e => { if (!e.currentTarget.classList.contains('text-accent')) e.currentTarget.style.color = 'var(--text-secondary)'; }}
               >
                 {label}
               </NavLink>
@@ -52,11 +51,11 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed top-20 inset-x-4 z-40 backdrop-blur-md rounded-2xl p-4 md:hidden"
-            style={{ background: 'var(--navbar-bg)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-navbar)' }}
+            exit={{ opacity: 0, y: -10 }}
+            className="fixed top-[65px] inset-x-0 z-40 p-4 md:hidden"
+            style={{ background: 'var(--bg)', borderBottom: '1px solid var(--border)' }}
           >
             {links.map(({ to, label }) => (
               <NavLink
@@ -65,7 +64,7 @@ const Navbar = () => {
                 end={to === '/'}
                 onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
-                  `block px-4 py-3 rounded-xl mb-1 transition-colors ${isActive ? 'bg-accent text-white' : ''}`
+                  `block px-4 py-3 rounded-lg mb-1 transition-colors text-sm font-medium ${isActive ? 'text-accent bg-accent/10' : ''}`
                 }
                 style={({ isActive }) => isActive ? {} : { color: 'var(--text-secondary)' }}
               >

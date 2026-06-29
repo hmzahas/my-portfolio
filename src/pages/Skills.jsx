@@ -87,28 +87,27 @@ const Skills = () => {
   const current = categories.find(c => c.id === active);
 
   return (
-    <main className="relative z-10 pt-28 pb-20 px-6">
-      <div className="max-w-5xl mx-auto">
+    <main className="relative z-10 pt-24 md:pt-32 pb-24 md:pb-32 px-6 md:px-16 lg:px-24">
+      <div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
-          <p className="text-accent text-sm tracking-widest uppercase mb-3">Kemampuan</p>
+          <p className="text-accent text-sm tracking-widest uppercase mb-4">Kemampuan</p>
           <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-            Tech{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Stack</span>
+            Tech Stack
           </h1>
           <p className="text-lg max-w-xl" style={{ color: 'var(--text-secondary)' }}>
             Teknologi dan tools yang saya gunakan sehari-hari untuk membangun produk digital.
           </p>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-8 items-start">
 
           {/* Left — Category Selector */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
-            className="md:w-56 flex-shrink-0 flex flex-row md:flex-col gap-3"
+            className="md:w-56 flex-shrink-0 flex flex-row md:flex-col gap-2 md:gap-4 overflow-x-auto pb-1"
           >
             {categories.map((cat) => (
               <motion.button
@@ -116,7 +115,7 @@ const Skills = () => {
                 onClick={() => setActive(cat.id)}
                 whileHover={{ x: active === cat.id ? 0 : 4 }}
                 whileTap={{ scale: 0.97 }}
-                className="relative w-full text-left rounded-2xl px-5 py-4 transition-all duration-300 overflow-hidden"
+                className="relative w-full text-left rounded-2xl px-5 py-5 transition-all duration-300 overflow-hidden"
                 style={active === cat.id ? {
                   background: `${cat.color}12`,
                   border: `1px solid ${cat.color}35`,
@@ -145,7 +144,7 @@ const Skills = () => {
               </motion.button>
             ))}
 
-            <div className="hidden md:block rounded-2xl px-5 py-4 mt-2" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+            <div className="hidden md:block rounded-2xl px-5 py-5 mt-4" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
               <p className="text-xs" style={{ color: 'var(--text-muted)' }}>Total Skills</p>
               <p className="text-2xl font-black mt-1" style={{ color: 'var(--text-primary)' }}>
                 {categories.reduce((acc, c) => acc + c.skills.length, 0)}
@@ -162,7 +161,7 @@ const Skills = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="flex items-center gap-3 mb-5"
+                className="flex items-center gap-3 mb-8"
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: current.color, boxShadow: `0 0 8px ${current.color}` }} />
                 <p className="font-semibold" style={{ color: 'var(--text-primary)' }}>{current.label}</p>
@@ -173,7 +172,7 @@ const Skills = () => {
               </motion.div>
             </AnimatePresence>
 
-            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <AnimatePresence mode="popLayout">
                 {current.skills.map((skill, i) => (
                   <SkillCard key={active + skill.name} skill={skill} color={current.color} index={i} />

@@ -15,13 +15,13 @@ const Projects = () => {
 
   return (
     <>
-      <main className="relative z-10 pt-28 pb-20 px-6">
-        <div className="max-w-7xl mx-auto">
+      <main className="relative z-10 pt-24 md:pt-32 pb-24 md:pb-32 px-6 md:px-16 lg:px-24">
+        <div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
-            <p className="text-accent text-sm tracking-widest uppercase mb-3">Portofolio</p>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
+            <p className="text-accent text-sm tracking-widest uppercase mb-4">Portofolio</p>
             <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
-              Proyek <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Pilihan</span>
+              Proyek Pilihan
             </h1>
             <p className="text-lg max-w-xl" style={{ color: 'var(--text-secondary)' }}>
               Kumpulan proyek yang telah saya kerjakan. Klik untuk melihat detail.
@@ -29,7 +29,7 @@ const Projects = () => {
           </motion.div>
 
           {/* Filter */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-wrap gap-3 mb-12">
             {filters.map((f) => (
               <motion.button
                 key={f}
@@ -48,7 +48,7 @@ const Projects = () => {
           </div>
 
           {/* Grid */}
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <AnimatePresence mode="popLayout">
               {filtered.map((project, index) => (
                 <motion.div
@@ -69,8 +69,10 @@ const Projects = () => {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   )}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.color} ${project.image ? 'opacity-60 group-hover:opacity-40' : 'opacity-20 group-hover:opacity-35'} transition-all duration-500`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  {!project.image && (
+                    <div className="absolute inset-0" style={{ background: 'var(--bg-card)' }} />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
                   <div className="absolute inset-0 p-6 flex flex-col justify-between z-10">
                     <div className="flex justify-between items-start">
                       <div className="flex gap-1.5 flex-wrap">

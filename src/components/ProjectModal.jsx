@@ -18,7 +18,9 @@ const ProjectModal = ({ project, onClose }) => (
           className="fixed inset-x-4 top-1/2 -translate-y-1/2 max-w-2xl mx-auto rounded-2xl z-[101] overflow-hidden"
           style={{ background: 'var(--bg)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-lg)' }}
         >
-          <div className={`relative h-48 bg-gradient-to-br ${project.color} overflow-hidden`}>
+          <div className={`relative h-48 overflow-hidden`}
+            style={{ background: project.image ? '#111' : 'var(--bg-card)', borderBottom: '1px solid var(--border)' }}
+          >
             {project.image && (
               <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-70" />
             )}

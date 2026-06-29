@@ -3,14 +3,12 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Toaster, toast } from 'sonner';
 
-import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import BackgroundOrbs from './components/BackgroundOrbs';
 import CustomCursor from './components/CustomCursor';
 import CursorTrail from './components/CursorTrail';
 import LoadingScreen from './components/LoadingScreen';
 import NoiseOverlay from './components/NoiseOverlay';
-import ThemeSwitcher from './components/ThemeSwitcher';
 import CommandPalette from './components/CommandPalette';
 
 import Home from './pages/Home';
@@ -55,12 +53,11 @@ const AppContent = () => {
         </motion.div>
       </AnimatePresence>
       <footer
-        className="py-8 text-center text-xs relative z-10"
+        className="py-12 px-6 md:px-16 lg:px-24 text-xs relative z-10"
         style={{ borderTop: '1px solid var(--footer-border)', color: 'var(--text-muted)' }}
       >
-        
-        <p style={{ color: 'var(--text-secondary)' }}>Copyright © {new Date().getFullYear()} Hamzah </p>
-          All right reserved.
+        <p style={{ color: 'var(--text-secondary)' }}>Copyright © {new Date().getFullYear()} Hamzah</p>
+        <p>All rights reserved.</p>
       </footer>
     </>
   );
@@ -99,7 +96,6 @@ const AppShell = () => {
           <CursorTrail />
           <NoiseOverlay />
           <ScrollProgress />
-          <ThemeSwitcher />
           <Toaster position="bottom-right" />
 
           <AnimatePresence>
@@ -130,10 +126,6 @@ const AppShell = () => {
   );
 };
 
-const App = () => (
-  <ThemeProvider>
-    <AppShell />
-  </ThemeProvider>
-);
+const App = () => <AppShell />;
 
 export default App;

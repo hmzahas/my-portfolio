@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="h-screen flex flex-col justify-center items-center px-6 text-center relative overflow-hidden">
+    <section ref={sectionRef} className="h-screen flex flex-col justify-start pt-32 md:pt-56 px-6 md:px-16 lg:px-24 relative overflow-hidden">
       <motion.div style={{ y, opacity }}>
 
         {/* Currently Widget */}
@@ -32,7 +32,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs mb-6"
           style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
         >
           <span className="relative flex h-2 w-2">
@@ -48,55 +48,43 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-          className="text-5xl md:text-8xl font-bold mb-4 leading-tight"
+          className="text-[2.8rem] leading-[1] md:text-9xl font-bold tracking-tight"
           style={{ color: 'var(--text-primary)' }}
         >
-          Membangun Dunia <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
-            Digital.
-          </span>
+          Membangun <br />
+          Dunia Digital.
         </motion.h1>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="text-accent font-medium mb-6 tracking-widest uppercase text-sm h-6"
+          className="text-accent font-medium tracking-widest uppercase text-xs md:text-sm h-5 mt-6"
         >
           <span ref={typedRef} />
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7 }}
-          className="max-w-lg mx-auto mb-8 text-lg"
-          style={{ color: 'var(--text-secondary)' }}
-        >
-          
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex gap-4 justify-center flex-wrap"
+          className="flex gap-3 flex-wrap mt-8"
         >
           <motion.button
             onClick={() => navigate('/projects')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             data-magnetic
-            className="bg-accent text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-indigo-600 transition-colors"
+            className="bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 hover:bg-indigo-600 transition-colors"
           >
-            Lihat Project <ArrowRight size={18} />
+            Lihat Project <ArrowRight size={16} />
           </motion.button>
           <motion.button
             onClick={() => navigate('/contact')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             data-magnetic
-            className="px-8 py-3 rounded-full font-bold transition-colors"
+            className="px-6 py-3 rounded-full text-sm font-semibold transition-colors"
             style={{ border: '1px solid var(--border)', color: 'var(--text-primary)', background: 'var(--bg-card)' }}
             onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-card-hover)'}
             onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-card)'}
@@ -109,7 +97,7 @@ const HeroSection = () => {
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        className="absolute bottom-10 left-8 md:left-16 lg:left-24"
         style={{ color: 'var(--text-muted)' }}
       >
         <div className="w-6 h-10 rounded-full flex justify-center p-1" style={{ border: '2px solid var(--text-muted)' }}>
