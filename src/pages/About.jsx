@@ -193,7 +193,7 @@ const About = () => {
             </div>
 
             <motion.a
-              href="/CV%20Hamzah%20Candra%20Yusuf.pdf"
+              href="/sertif/CV%20Hamzah%20Candra%20Yusuf%20terbaru.pdf"
               download
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
