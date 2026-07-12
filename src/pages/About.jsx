@@ -221,27 +221,7 @@ const About = () => (
             </GCard>
           </motion.div>
 
-          {/* Journey */}
-          <motion.div {...fadeUp(0.4)} className="col-span-2">
-            <div className="glass rounded-3xl overflow-hidden">
-              <div className="px-6 pt-6 pb-4" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                <p className="section-label mb-0">Journey</p>
-              </div>
-              {/* Track */}
-              <div className="px-6 pt-5 pb-2">
-                <div className="relative flex items-center justify-between">
-                  <div className="absolute inset-x-0 top-1/2 h-px" style={{ background: 'rgba(255,255,255,0.06)' }} />
-                  {timeline.map((item, i) => (
-                    <div key={i} className="relative flex flex-col items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#7C5CFF', boxShadow: '0 0 8px rgba(124,92,255,0.6)' }} />
-                      <span className="text-xs font-mono" style={{ color: '#52525B' }}>{item.year}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <JourneyAccordion items={timeline} />
-            </div>
-          </motion.div>
+
 
         </div>
       </div>

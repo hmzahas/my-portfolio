@@ -63,28 +63,8 @@ const BentoGrid = () => {
     <section className="px-6 md:px-16 lg:px-24 pt-4 pb-24 md:pb-32">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4">
 
-        {/* About — tall left */}
-        <motion.div {...fadeUp(0)} className="md:col-span-5 md:row-span-2">
-          <GlassCard onClick={() => navigate('/about')} className="min-h-[220px] md:min-h-[420px] p-8 flex flex-col justify-between">
-            <div>
-              <span className="text-[10px] uppercase tracking-[0.25em] mb-6 block" style={{ color: '#4B5563' }}>About Me</span>
-              <h2 className="text-3xl md:text-4xl font-black leading-tight mb-4" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
-                Halo, saya <br />
-                <span className="gradient-text">Hamzah 👋</span>
-              </h2>
-              <p className="text-sm leading-relaxed" style={{ color: '#9CA3AF' }}>
-                Frontend Developer & UI/UX Designer yang passionate membangun pengalaman digital yang premium dan berkesan.
-              </p>
-            </div>
-            <div className="flex items-center gap-2 text-sm font-medium mt-6 transition-all duration-300 group-hover:gap-3" style={{ color: '#7C5CFC' }}>
-              <span>Selengkapnya</span>
-              <ArrowUpRight size={15} />
-            </div>
-          </GlassCard>
-        </motion.div>
-
         {/* Status */}
-        <motion.div {...fadeUp(0.08)} className="md:col-span-3">
+        <motion.div {...fadeUp(0.08)} className="md:col-span-4">
           <GlassCard className="min-h-[140px] md:min-h-[190px] p-7 flex flex-col justify-between">
             <div className="flex items-center gap-2">
               <span className="relative flex h-1.5 w-1.5">
