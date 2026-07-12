@@ -63,6 +63,8 @@ const AppContent = () => {
   );
 };
 
+const isMobile = window.matchMedia('(pointer: coarse)').matches;
+
 const AppShell = () => {
   const [loading, setLoading] = useState(true);
   const [easterEgg, setEasterEgg] = useState(false);
@@ -92,9 +94,9 @@ const AppShell = () => {
 
       {!loading && (
         <BrowserRouter>
-          <CustomCursor />
-          <CursorTrail />
-          <NoiseOverlay />
+          {!isMobile && <CustomCursor />}
+          {!isMobile && <CursorTrail />}
+          {!isMobile && <NoiseOverlay />}
           <ScrollProgress />
           <Toaster position="bottom-right" />
 
