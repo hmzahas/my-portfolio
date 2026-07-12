@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Code2, Github, Mail } from 'lucide-react';
+import { X, ExternalLink, Code2 } from 'lucide-react';
 
 const ProjectModal = ({ project, onClose }) => (
   <AnimatePresence>
