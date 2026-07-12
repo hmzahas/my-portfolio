@@ -26,7 +26,7 @@ const CustomCursor = () => {
     };
   }, []);
 
-  if (hidden) return null;
+  if (hidden || window.matchMedia('(pointer: coarse)').matches) return null;
 
   return (
     <>
