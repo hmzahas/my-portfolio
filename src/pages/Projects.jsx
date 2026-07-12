@@ -1,102 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, X, Code2, Globe } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import allProjects from '../data/projects';
 
 const filters = ['All', 'Mobile', 'Desktop'];
-
-// ── Modal ──────────────────────────────────────────────────────────────────
-const ProjectModal = ({ project, onClose }) => (
-  <AnimatePresence>
-    {project && (
-      <>
-        <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="fixed inset-0 z-[100]"
-          style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(12px)' }}
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92, y: 24 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: 24 }}
-          transition={{ type: 'spring', stiffness: 280, damping: 28 }}
-          className="fixed inset-x-4 top-1/2 -translate-y-1/2 max-w-2xl mx-auto rounded-3xl z-[101] overflow-hidden"
-          style={{ background: '#0E0E10', border: '1px solid rgba(255,255,255,0.08)', boxShadow: '0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(124,92,255,0.1)' }}
-        >
-          {/* Preview */}
-          <div className="relative overflow-hidden" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            {project.demo ? (
-              <iframe
-                src={project.demo}
-                title={project.title}
-                className="w-full h-52 border-0"
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-              />
-            ) : (
-              <div className="relative h-48" style={{ background: '#141416' }}>
-                {project.image && (
-                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-60" />
-                )}
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #0E0E10, transparent)' }} />
-              </div>
-            )}
-            {/* Gradient overlay bottom */}
-            <div className="absolute bottom-0 left-0 right-0 h-12" style={{ background: 'linear-gradient(to top, #0E0E10, transparent)' }} />
-          </div>
-
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 rounded-full transition-all hover:scale-110 z-10"
-            style={{ background: 'rgba(0,0,0,0.6)', border: '1px solid rgba(255,255,255,0.1)', color: 'white' }}
-          >
-            <X size={16} />
-          </button>
-
-          <div className="p-7">
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {project.category.map(cat => (
-                <span key={cat} className="text-xs px-3 py-1 rounded-full font-medium"
-                  style={{ background: 'rgba(124,92,255,0.12)', border: '1px solid rgba(124,92,255,0.25)', color: '#a78bfa' }}>
-                  {cat}
-                </span>
-              ))}
-            </div>
-            <h2 className="text-2xl font-black mb-2 text-white" style={{ fontFamily: 'Syne, sans-serif' }}>{project.title}</h2>
-            <p className="text-sm leading-relaxed mb-5" style={{ color: '#A1A1AA' }}>{project.description}</p>
-
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.stack.map(tech => (
-                <span key={tech} className="text-xs px-3 py-1 rounded-full"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#71717A' }}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex gap-3">
-              {project.demo && (
-                <a href={project.demo} target="_blank" rel="noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all hover:scale-105"
-                  style={{ background: 'linear-gradient(135deg, #7C5CFF, #4F8CFF)', boxShadow: '0 0 20px rgba(124,92,255,0.3)' }}>
-                  <Globe size={14} /> Live Demo
-                </a>
-              )}
-              {project.repo && (
-                <a href={project.repo} target="_blank" rel="noreferrer"
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all hover:scale-105"
-                  style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: '#A1A1AA' }}>
-                  <Code2 size={14} /> Source Code
-                </a>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </>
-    )}
-  </AnimatePresence>
-);
 
 // ── Card ───────────────────────────────────────────────────────────────────
 const ProjectCard = ({ project, index, onClick }) => (
@@ -162,7 +70,7 @@ const ProjectCard = ({ project, index, onClick }) => (
 // ── Page ───────────────────────────────────────────────────────────────────
 const Projects = () => {
   const [active, setActive] = useState('All');
-  const [selected, setSelected] = useState(null);
+  const navigate = useNavigate();
   const filtered = active === 'All' ? allProjects : allProjects.filter(p => p.category.includes(active));
 
   return (
@@ -212,14 +120,13 @@ const Projects = () => {
           <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <AnimatePresence mode="popLayout">
               {filtered.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} onClick={setSelected} />
+                <ProjectCard key={project.id} project={project} index={index} onClick={p => navigate(`/projects/${p.id}`)} />
               ))}
             </AnimatePresence>
           </motion.div>
 
         </div>
       </main>
-      <ProjectModal project={selected} onClose={() => setSelected(null)} />
     </>
   );
 };
