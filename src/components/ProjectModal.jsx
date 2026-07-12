@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Code2 } from 'lucide-react';
+import { X, ExternalLink, Code2, Github, Mail } from 'lucide-react';
 
 const ProjectModal = ({ project, onClose }) => (
   <AnimatePresence>
@@ -18,13 +18,23 @@ const ProjectModal = ({ project, onClose }) => (
           className="fixed inset-x-4 top-1/2 -translate-y-1/2 max-w-2xl mx-auto rounded-2xl z-[101] overflow-hidden"
           style={{ background: 'var(--bg)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-lg)' }}
         >
-          <div className={`relative h-48 overflow-hidden`}
-            style={{ background: project.image ? '#111' : 'var(--bg-card)', borderBottom: '1px solid var(--border)' }}
-          >
-            {project.image && (
-              <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-70" />
+          <div className="relative overflow-hidden" style={{ borderBottom: '1px solid var(--border)' }}>
+            {project.demo ? (
+              <iframe
+                src={project.demo}
+                title={project.title}
+                className="w-full h-56 border-0"
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin"
+              />
+            ) : (
+              <div className="relative h-48" style={{ background: project.image ? '#111' : 'var(--bg-card)' }}>
+                {project.image && (
+                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-70" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+              </div>
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
           <button
             onClick={onClose}

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Github, Mail } from 'lucide-react';
 import Typed from 'typed.js';
 
 const HeroSection = () => {
@@ -64,34 +64,61 @@ const HeroSection = () => {
           <span ref={typedRef} />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="flex gap-3 flex-wrap mt-8"
-        >
-          <motion.button
-            onClick={() => navigate('/projects')}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            data-magnetic
-            className="bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 hover:bg-indigo-600 transition-colors"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex gap-3 flex-wrap mt-8"
           >
-            Lihat Project <ArrowRight size={16} />
-          </motion.button>
-          <motion.button
-            onClick={() => navigate('/contact')}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            data-magnetic
-            className="px-6 py-3 rounded-full text-sm font-semibold transition-colors"
-            style={{ border: '1px solid var(--border)', color: 'var(--text-primary)', background: 'var(--bg-card)' }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-card-hover)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-card)'}
+            <motion.button
+              onClick={() => navigate('/projects')}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              data-magnetic
+              className="bg-accent text-white px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 hover:bg-indigo-600 transition-colors"
+            >
+              Lihat Project <ArrowRight size={16} />
+            </motion.button>
+            <motion.button
+              onClick={() => navigate('/contact')}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              data-magnetic
+              className="px-6 py-3 rounded-full text-sm font-semibold transition-colors"
+              style={{ border: '1px solid var(--border)', color: 'var(--text-primary)', background: 'var(--bg-card)' }}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--bg-card-hover)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'var(--bg-card)'}
+            >
+              Hubungi Saya
+            </motion.button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="flex items-center gap-4 mt-6"
           >
-            Hubungi Saya
-          </motion.button>
-        </motion.div>
+            <a
+              href="https://github.com/hmzahas"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 text-sm transition-colors hover:text-accent"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <Github size={16} />
+              hmzahas
+            </a>
+            <span style={{ color: 'var(--border)' }}>·</span>
+            <a
+              href="mailto:hamzahcandrayusuf@gmail.com"
+              className="flex items-center gap-2 text-sm transition-colors hover:text-accent"
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <Mail size={16} />
+              hamzahcandrayusuf@gmail.com
+            </a>
+          </motion.div>
       </motion.div>
 
       <motion.div
