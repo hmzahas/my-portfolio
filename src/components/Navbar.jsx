@@ -38,7 +38,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <NavLink to="/" className="font-bold text-lg tracking-tighter" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
-            <span className="gradient-text">ZHF.</span>
+            <span className="gradient-text">Zahhfolio.</span>
           </NavLink>
 
           <div className="hidden md:flex items-center gap-1 text-sm">
