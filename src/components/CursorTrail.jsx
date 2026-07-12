@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 const TRAIL_LENGTH = 12;
 
 const CursorTrail = () => {
+  if (window.matchMedia('(pointer: coarse)').matches) return null;
   const canvasRef = useRef(null);
   const points = useRef([]);
   const mouse = useRef({ x: 0, y: 0 });
