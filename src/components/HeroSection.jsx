@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Mail, MapPin, Clock, Download } from 'lucide-react';
+import { ArrowRight, Mail, Clock, Download } from 'lucide-react';
 
 const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
   id: i,
@@ -164,80 +164,52 @@ const HeroSection = () => {
             </h1>
           </motion.div>
 
-          {/* Profile card */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.35, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="w-full rounded-3xl overflow-hidden mb-4"
-            style={{
-              maxWidth: 340,
-              background: 'rgba(255,255,255,0.025)',
-              border: '1px solid rgba(255,255,255,0.08)',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
-            }}
-          >
-            {/* Gradient header */}
-            <div className="h-20 w-full" style={{ background: 'linear-gradient(135deg, #7C5CFF, #4F8CFF)' }} />
-            <div className="px-5 pb-5 flex flex-col items-center text-center">
-              {/* Avatar */}
-              <motion.div
-                animate={{ y: [0, -4, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative w-20 h-20 rounded-2xl overflow-hidden -mt-10 mb-3 border-2 shadow-xl"
-                style={{ borderColor: 'rgba(124,92,255,0.5)', boxShadow: '0 8px 24px rgba(124,92,255,0.25)' }}
-              >
-                <img src="/profile.jpeg" alt="Hamzah" className="w-full h-full object-cover" />
-              </motion.div>
-              <p className="font-bold text-sm text-white">HAMZAH CANDRA YUSUF</p>
-              <p className="text-xs mt-0.5" style={{ color: '#71717A' }}>FRESH GRADUATE</p>
-              <div className="flex items-center gap-2 mt-3">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
-                </span>
-                <span className="text-green-400 text-xs">Open to work</span>
-              </div>
-            </div>
-          </motion.div>
+          {/* Description */}
+          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+            className="text-sm leading-relaxed text-center mb-6" style={{ color: '#9CA3AF', maxWidth: 320 }}>
+            Saya membangun pengalaman digital yang premium, interaktif, dan berkesan.
+          </motion.p>
 
           {/* Info cards */}
-          {[
-            { icon: MapPin, text: 'Indonesia 🇮🇩' },
-            { icon: Clock, text: 'WIB (UTC+7)' },
-          ].map(({ icon: Icon, text }, i) => (
-            <motion.div key={i}
-              initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="w-full flex items-center gap-3 rounded-2xl px-4 py-3 mb-3"
-              style={{ maxWidth: 340, background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
-            >
-              <Icon size={13} style={{ color: '#7C5CFF' }} />
-              <span className="text-sm" style={{ color: '#A1A1AA' }}>{text}</span>
-            </motion.div>
-          ))}
+          <div className="w-full flex gap-3 mb-4" style={{ maxWidth: 340 }}>
+            {[
+              { icon: MapPin, text: 'Indonesia' },
+              { icon: Clock, text: 'WIB (UTC+7)' },
+            ].map(({ icon: Icon, text }, i) => (
+              <motion.div key={i}
+                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.45 + i * 0.08 }}
+                className="flex-1 flex items-center gap-2 rounded-2xl px-3 py-3"
+                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}
+              >
+                <Icon size={12} style={{ color: '#7C5CFF' }} />
+                <span className="text-xs" style={{ color: '#A1A1AA' }}>{text}</span>
+              </motion.div>
+            ))}
+          </div>
 
-          {/* CTA */}
-          <motion.a
-            href="/sertif/CV%20Hamzah%20Candra%20Yusuf%20terbaru.pdf"
-            download
-            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.65 }}
-            whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-            className="w-full flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm text-white mt-1"
-            style={{
-              maxWidth: 340,
-              height: 56,
-              background: 'linear-gradient(135deg, #7C5CFF, #4F8CFF)',
-              boxShadow: '0 0 28px rgba(124,92,255,0.35)',
-            }}
-          >
-            <Download size={15} /> Download CV
-          </motion.a>
+          {/* CTA buttons */}
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+            className="w-full flex gap-3" style={{ maxWidth: 340 }}>
+            <motion.button onClick={() => navigate('/projects')}
+              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              className="flex-1 flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm text-white"
+              style={{ height: 48, background: 'linear-gradient(135deg, #7C5CFF, #4F8CFF)', boxShadow: '0 0 24px rgba(124,92,255,0.3)' }}>
+              <ArrowRight size={14} /> Projects
+            </motion.button>
+            <motion.a
+              href="/sertif/CV%20Hamzah%20Candra%20Yusuf%20terbaru.pdf"
+              download
+              whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
+              className="flex-1 flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm"
+              style={{ height: 48, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: 'white' }}>
+              <Download size={14} /> CV
+            </motion.a>
+          </motion.div>
 
           {/* Available badge */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mt-6"
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.75 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium mt-5"
             style={{ background: 'rgba(124,92,255,0.08)', border: '1px solid rgba(124,92,255,0.2)', color: '#a78bfa' }}>
             <span className="relative flex h-1.5 w-1.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />

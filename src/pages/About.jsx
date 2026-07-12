@@ -108,7 +108,7 @@ const About = () => (
       <motion.div {...fadeUp(0)} className="mb-16">
         <span className="section-label">Tentang Saya</span>
         <h1 className="text-5xl md:text-7xl font-black leading-tight" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
-          Kenalan <span className="gradient-text">Yuk 👋</span>
+          Kenalan <span style={{ color: '#4F8CFF' }}>Yuk</span>
         </h1>
       </motion.div>
 

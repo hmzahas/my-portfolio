@@ -262,33 +262,6 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        {/* ── KEY INSIGHTS ── */}
-        {project.insights && (
-          <section className="py-16 px-6 md:px-16 lg:px-24">
-            <div className="max-w-5xl mx-auto">
-              <motion.div {...fadeUp(0)} className="mb-8">
-                <span className="section-label">Learnings</span>
-                <h2 className="text-4xl md:text-5xl font-black text-white" style={{ fontFamily: 'Syne, sans-serif' }}>
-                  Key Insights
-                </h2>
-              </motion.div>
-              <div className="grid md:grid-cols-3 gap-4">
-                {project.insights.map((insight, i) => (
-                  <motion.div key={i} {...fadeUp(0.1 + i * 0.08)}
-                    className="rounded-3xl p-6 flex flex-col gap-4"
-                    style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                    <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black"
-                      style={{ background: 'rgba(124,92,255,0.12)', color: '#7C5CFF', border: '1px solid rgba(124,92,255,0.2)' }}>
-                      {i + 1}
-                    </div>
-                    <p className="text-sm leading-relaxed" style={{ color: '#A1A1AA' }}>{insight}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-
         {/* ── PROCESS ── */}
         {project.process && (
           <section className="py-16 px-6 md:px-16 lg:px-24">

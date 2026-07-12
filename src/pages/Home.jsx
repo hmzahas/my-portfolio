@@ -75,7 +75,7 @@ const BentoGrid = () => {
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-[0.25em] mb-2" style={{ color: '#4B5563' }}>Status</p>
-              <p className="font-black text-xl leading-tight" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>Open to<br />Work 🚀</p>
+              <p className="font-black text-xl leading-tight" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>Open to<br />Work</p>
             </div>
           </GlassCard>
         </motion.div>
@@ -144,7 +144,7 @@ const BentoGrid = () => {
         {/* Years */}
         <motion.div {...fadeUp(0.2)} className="md:col-span-3">
           <GlassCard className="min-h-[100px] md:min-h-[130px] p-7 flex flex-col justify-center">
-            <p className="text-4xl font-black mb-1 gradient-text" style={{ fontFamily: 'Syne, sans-serif' }}>3+</p>
+            <p className="text-4xl font-black mb-1" style={{ fontFamily: 'Syne, sans-serif', color: '#4F8CFF' }}>3+</p>
             <p className="text-xs" style={{ color: '#4B5563' }}>Years Learning</p>
           </GlassCard>
         </motion.div>
@@ -157,7 +157,7 @@ const BentoGrid = () => {
             <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#4B5563' }}>Mantra</p>
             <p className="text-lg md:text-2xl font-bold leading-snug" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
               "Code is like poetry —{' '}
-              <span className="gradient-text">it should be elegant.</span>"
+              <span style={{ color: '#4F8CFF' }}>it should be elegant.</span>"
             </p>
           </GlassCard>
         </motion.div>
