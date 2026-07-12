@@ -137,7 +137,7 @@ const About = () => {
         {/* Header */}
         <motion.div {...fadeUp(0)} className="mb-16">
           <p className="text-accent text-sm tracking-widest uppercase mb-4">Tentang Saya</p>
-          <h1 className="text-5xl md:text-6xl font-bold" style={{ color: 'var(--text-primary)' }}>
+          <h1 className="text-5xl md:text-6xl font-bold" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
             Kenalan <br />
             <span className="text-accent">Yuk 👋</span>
           </h1>
@@ -198,7 +198,7 @@ const About = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.97 }}
               className="flex items-center justify-center gap-2 w-full rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all"
-              style={{ background: '#6366f1' }}
+              style={{ background: 'linear-gradient(135deg, #7C5CFC, #4F8CFF)', boxShadow: '0 0 20px rgba(124,92,252,0.3)' }}
             >
               <Download size={15} />
               Download CV

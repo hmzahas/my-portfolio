@@ -91,11 +91,11 @@ const Skills = () => {
       <div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
-          <p className="text-accent text-sm tracking-widest uppercase mb-4">Kemampuan</p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+          <p className="text-sm tracking-widest uppercase mb-4 gradient-text font-medium">Kemampuan</p>
+          <h1 className="text-5xl md:text-7xl font-black mb-6" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
             Tech Stack
           </h1>
-          <p className="text-lg max-w-xl" style={{ color: 'var(--text-secondary)' }}>
+          <p className="text-lg max-w-xl" style={{ color: '#9CA3AF' }}>
             Teknologi dan tools yang saya gunakan sehari-hari untuk membangun produk digital.
           </p>
         </motion.div>

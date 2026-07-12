@@ -38,14 +38,14 @@ const DNAStrand = ({ progress }) => {
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
       <defs>
         <linearGradient id="strand1grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.2" />
-          <stop offset="50%" stopColor="#a855f7" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#6366f1" stopOpacity="0.2" />
+          <stop offset="0%" stopColor="#7C5CFC" stopOpacity="0.2" />
+          <stop offset="50%" stopColor="#4F8CFF" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#7C5CFC" stopOpacity="0.2" />
         </linearGradient>
         <linearGradient id="strand2grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#ec4899" stopOpacity="0.2" />
-          <stop offset="50%" stopColor="#6366f1" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#ec4899" stopOpacity="0.2" />
+          <stop offset="0%" stopColor="#00E5FF" stopOpacity="0.2" />
+          <stop offset="50%" stopColor="#7C5CFC" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#00E5FF" stopOpacity="0.2" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
@@ -62,7 +62,7 @@ const DNAStrand = ({ progress }) => {
           key={i}
           x1={b.x} y1={b.y1}
           x2={b.x} y2={b.y2}
-          stroke="rgba(168,85,247,0.3)"
+          stroke="rgba(124,92,252,0.3)"
           strokeWidth="1"
           strokeOpacity={b.opacity}
         />
@@ -95,7 +95,7 @@ const DNAStrand = ({ progress }) => {
         const y = height / 2 + Math.sin(t * freq + progress * 6) * amplitude;
         return (
           <circle key={i} cx={x} cy={y} r="3.5"
-            fill="#a855f7" filter="url(#glow)"
+            fill="#7C5CFC" filter="url(#glow)"
             opacity={0.6 + Math.abs(Math.sin(t * freq + progress * 6)) * 0.4}
           />
         );
@@ -108,7 +108,7 @@ const DNAStrand = ({ progress }) => {
         const y = height / 2 - Math.sin(t * freq + progress * 6) * amplitude;
         return (
           <circle key={i} cx={x} cy={y} r="3.5"
-            fill="#6366f1" filter="url(#glow)"
+            fill="#4F8CFF" filter="url(#glow)"
             opacity={0.6 + Math.abs(Math.sin(t * freq + progress * 6)) * 0.4}
           />
         );
@@ -157,7 +157,7 @@ const LoadingScreen = ({ onComplete }) => {
         animate={{ opacity: phase === 'exit' ? 0 : 1 }}
         transition={{ duration: 1 }}
         style={{
-          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(99,102,241,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(124,92,252,0.15) 0%, transparent 70%)',
         }}
       />
 
@@ -191,7 +191,7 @@ const LoadingScreen = ({ onComplete }) => {
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
                 className="w-64 h-px"
-                style={{ background: 'linear-gradient(to right, transparent, rgba(168,85,247,0.5), transparent)' }}
+                style={{ background: 'linear-gradient(to right, transparent, rgba(124,92,252,0.6), transparent)' }}
               />
 
               {/* Letters */}
@@ -209,7 +209,7 @@ const LoadingScreen = ({ onComplete }) => {
                     className="text-5xl md:text-7xl font-black tracking-tight"
                     style={{
                       color: 'white',
-                      textShadow: '0 0 30px rgba(168,85,247,0.4)',
+                      textShadow: '0 0 30px rgba(124,92,252,0.5)',
                     }}
                   >
                     {letter}
@@ -223,7 +223,7 @@ const LoadingScreen = ({ onComplete }) => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
                 className="text-xs tracking-[0.4em] uppercase"
-                style={{ color: 'rgba(168,85,247,0.7)' }}
+                style={{ color: 'rgba(124,92,252,0.9)' }}
               >
                 Frontend Developer
               </motion.p>
@@ -234,7 +234,7 @@ const LoadingScreen = ({ onComplete }) => {
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
                 className="w-64 h-px"
-                style={{ background: 'linear-gradient(to right, transparent, rgba(99,102,241,0.5), transparent)' }}
+                style={{ background: 'linear-gradient(to right, transparent, rgba(79,140,255,0.5), transparent)' }}
               />
             </motion.div>
           )}

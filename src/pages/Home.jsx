@@ -2,42 +2,54 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import HeroSection from '../components/HeroSection';
 import Marquee from '../components/Marquee';
-import GradientBorder from '../components/GradientBorder';
 import { ArrowUpRight } from 'lucide-react';
-import { SiHtml5, SiCss, SiTailwindcss, SiFramer, SiNodedotjs, SiFigma, SiGithub } from 'react-icons/si';
+import { SiHtml5, SiCss, SiJavascript, SiReact, SiTailwindcss, SiFramer, SiNodedotjs, SiFigma, SiGithub, SiLaravel, SiPhp } from 'react-icons/si';
 import allProjects from '../data/projects';
 
 const techStack = [
-  { name: 'HTML5',          Icon: SiHtml5,       color: '#E34F26' },
-  { name: 'CSS',            Icon: SiCss,         color: '#1572B6' },
+  { name: 'React',          Icon: SiReact,       color: '#61DAFB' },
+  { name: 'JavaScript',     Icon: SiJavascript,  color: '#F7DF1E' },
   { name: 'Tailwind',       Icon: SiTailwindcss, color: '#06B6D4' },
   { name: 'Framer Motion',  Icon: SiFramer,      color: '#ffffff' },
   { name: 'Node.js',        Icon: SiNodedotjs,   color: '#339933' },
+  { name: 'Laravel',        Icon: SiLaravel,     color: '#FF2D20' },
+  { name: 'PHP',            Icon: SiPhp,         color: '#777BB4' },
   { name: 'Figma',          Icon: SiFigma,       color: '#F24E1E' },
   { name: 'Github',         Icon: SiGithub,      color: '#FFFFFF' },
+  { name: 'HTML5',          Icon: SiHtml5,       color: '#E34F26' },
+  { name: 'CSS',            Icon: SiCss,         color: '#1572B6' },
 ];
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 32 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] },
+  transition: { duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] },
 });
 
-const Card = ({ onClick, children, className = '' }) => (
+const GlassCard = ({ onClick, children, className = '', style = {} }) => (
   <div
     onClick={onClick}
-    className={`h-full rounded-3xl transition-all duration-300 ${onClick ? 'cursor-pointer' : ''} ${className}`}
-    style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-card)' }}
+    className={`h-full rounded-3xl transition-all duration-500 ${onClick ? 'cursor-pointer group' : ''} ${className}`}
+    style={{
+      background: 'rgba(255,255,255,0.02)',
+      border: '1px solid rgba(255,255,255,0.07)',
+      backdropFilter: 'blur(10px)',
+      ...style,
+    }}
     onMouseEnter={e => {
-      e.currentTarget.style.border = '1px solid var(--border-hover)';
-      e.currentTarget.style.background = 'var(--bg-card-hover)';
-      e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+      if (onClick) {
+        e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+        e.currentTarget.style.borderColor = 'rgba(124,92,252,0.25)';
+        e.currentTarget.style.boxShadow = '0 0 40px rgba(124,92,252,0.08)';
+      }
     }}
     onMouseLeave={e => {
-      e.currentTarget.style.border = '1px solid var(--border)';
-      e.currentTarget.style.background = 'var(--bg-card)';
-      e.currentTarget.style.boxShadow = 'var(--shadow-card)';
+      if (onClick) {
+        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
+        e.currentTarget.style.boxShadow = 'none';
+      }
     }}
   >
     {children}
@@ -48,75 +60,87 @@ const BentoGrid = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="px-6 md:px-16 lg:px-24 pt-8 pb-24 md:pb-32">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+    <section className="px-6 md:px-16 lg:px-24 pt-4 pb-24 md:pb-32">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-4">
 
-        {/* About */}
+        {/* About — tall left */}
         <motion.div {...fadeUp(0)} className="md:col-span-5 md:row-span-2">
-          <Card onClick={() => navigate('/about')} className="group min-h-[220px] md:min-h-[400px] p-6 md:p-8 flex flex-col justify-between">
+          <GlassCard onClick={() => navigate('/about')} className="min-h-[220px] md:min-h-[420px] p-8 flex flex-col justify-between">
             <div>
-              <span className="inline-block text-[11px] uppercase tracking-[0.2em] mb-4 md:mb-8" style={{ color: 'var(--text-muted)' }}>About</span>
-              <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-3 md:mb-4" style={{ color: 'var(--text-primary)' }}>
+              <span className="text-[10px] uppercase tracking-[0.25em] mb-6 block" style={{ color: '#4B5563' }}>About Me</span>
+              <h2 className="text-3xl md:text-4xl font-black leading-tight mb-4" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
                 Halo, saya <br />
-                <span className="text-accent">Hamzah 👋</span>
+                <span className="gradient-text">Hamzah 👋</span>
               </h2>
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                Frontend Developer yang passionate terhadap desain UI/UX, dan pengalaman pengguna yang berkesan.
+              <p className="text-sm leading-relaxed" style={{ color: '#9CA3AF' }}>
+                Frontend Developer & UI/UX Designer yang passionate membangun pengalaman digital yang premium dan berkesan.
               </p>
             </div>
-            <div className="flex items-center gap-2 text-accent text-sm mt-4 group-hover:gap-3 transition-all duration-300">
+            <div className="flex items-center gap-2 text-sm font-medium mt-6 transition-all duration-300 group-hover:gap-3" style={{ color: '#7C5CFC' }}>
               <span>Selengkapnya</span>
               <ArrowUpRight size={15} />
             </div>
-          </Card>
+          </GlassCard>
         </motion.div>
 
         {/* Status */}
         <motion.div {...fadeUp(0.08)} className="md:col-span-3">
-          <Card className="min-h-[140px] md:min-h-[180px] p-6 md:p-8 flex flex-col justify-between">
+          <GlassCard className="min-h-[140px] md:min-h-[190px] p-7 flex flex-col justify-between">
             <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
               </span>
               <span className="text-green-400 text-xs tracking-wide">Available now</span>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>Status</p>
-              <p className="font-bold text-lg md:text-xl leading-tight" style={{ color: 'var(--text-primary)' }}>Open to<br />Work 🚀</p>
+              <p className="text-[10px] uppercase tracking-[0.25em] mb-2" style={{ color: '#4B5563' }}>Status</p>
+              <p className="font-black text-xl leading-tight" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>Open to<br />Work 🚀</p>
             </div>
-          </Card>
+          </GlassCard>
         </motion.div>
 
         {/* Projects CTA */}
         <motion.div {...fadeUp(0.12)} className="md:col-span-4">
-          <GradientBorder className="h-full">
-            <div
-              onClick={() => navigate('/projects')}
-              className="group h-full min-h-[140px] md:min-h-[180px] rounded-3xl p-6 md:p-8 cursor-pointer flex flex-col justify-between"
-              style={{ background: 'var(--bg)' }}
-            >
-              <span className="text-[11px] uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>Projects</span>
-              <div className="flex items-end justify-between">
-                <p className="font-bold text-lg md:text-xl leading-tight" style={{ color: 'var(--text-primary)' }}>{allProjects.length}+<br />Proyek</p>
-                <motion.div
-                  whileHover={{ rotate: 45 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  className="w-9 h-9 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center"
-                >
-                  <ArrowUpRight size={15} className="text-accent" />
-                </motion.div>
-              </div>
+          <div
+            onClick={() => navigate('/projects')}
+            className="group h-full min-h-[140px] md:min-h-[190px] rounded-3xl p-7 cursor-pointer flex flex-col justify-between transition-all duration-500"
+            style={{
+              background: 'linear-gradient(135deg, rgba(124,92,252,0.15), rgba(79,140,255,0.08))',
+              border: '1px solid rgba(124,92,252,0.2)',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(124,92,252,0.25), rgba(79,140,255,0.15))';
+              e.currentTarget.style.boxShadow = '0 0 40px rgba(124,92,252,0.15)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(124,92,252,0.15), rgba(79,140,255,0.08))';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            <span className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#7C5CFC' }}>Portfolio</span>
+            <div className="flex items-end justify-between">
+              <p className="font-black text-2xl leading-tight" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
+                {allProjects.length}+<br />Projects
+              </p>
+              <motion.div
+                whileHover={{ rotate: 45 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="w-10 h-10 rounded-full flex items-center justify-center"
+                style={{ background: 'rgba(124,92,252,0.2)', border: '1px solid rgba(124,92,252,0.3)' }}
+              >
+                <ArrowUpRight size={16} style={{ color: '#7C5CFC' }} />
+              </motion.div>
             </div>
-          </GradientBorder>
+          </div>
         </motion.div>
 
-        {/* Skills */}
+        {/* Tech Stack */}
         <motion.div {...fadeUp(0.16)} className="md:col-span-7">
-          <Card onClick={() => navigate('/skills')} className="group min-h-[140px] md:min-h-[180px] p-6 md:p-8">
-            <div className="flex items-start justify-between mb-4 md:mb-6">
-              <span className="text-[11px] uppercase tracking-[0.2em]" style={{ color: 'var(--text-muted)' }}>Tech Stack</span>
-              <ArrowUpRight size={14} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <GlassCard onClick={() => navigate('/skills')} className="min-h-[140px] md:min-h-[190px] p-7">
+            <div className="flex items-start justify-between mb-5">
+              <span className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#4B5563' }}>Tech Stack</span>
+              <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#7C5CFC' }} />
             </div>
             <div className="flex flex-wrap gap-2">
               {techStack.map((tech, i) => (
@@ -125,51 +149,61 @@ const BentoGrid = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.05 }}
-                  className="flex items-center gap-2 text-xs px-3 py-1.5 rounded-full transition-colors"
-                  style={{ color: 'var(--text-secondary)', background: 'var(--bg-card)', border: '1px solid var(--border)' }}
+                  transition={{ delay: 0.2 + i * 0.04 }}
+                  className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full"
+                  style={{ color: '#9CA3AF', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)' }}
                 >
-                  <tech.Icon size={12} style={{ color: tech.color }} />
+                  <tech.Icon size={11} style={{ color: tech.color }} />
                   {tech.name}
                 </motion.div>
               ))}
             </div>
-          </Card>
+          </GlassCard>
         </motion.div>
 
-        {/* Stats + Quote — stack vertically on mobile */}
-        <motion.div {...fadeUp(0.2)} className="md:col-span-4">
-          <Card className="min-h-[100px] md:min-h-[140px] p-6 md:p-8 flex flex-col justify-center">
-            <p className="text-3xl md:text-4xl font-black mb-2" style={{ color: 'var(--text-primary)' }}>3+</p>
-            <p className="text-xs leading-tight" style={{ color: 'var(--text-muted)' }}>Years of Experience</p>
-          </Card>
+        {/* Years */}
+        <motion.div {...fadeUp(0.2)} className="md:col-span-3">
+          <GlassCard className="min-h-[100px] md:min-h-[130px] p-7 flex flex-col justify-center">
+            <p className="text-4xl font-black mb-1 gradient-text" style={{ fontFamily: 'Syne, sans-serif' }}>3+</p>
+            <p className="text-xs" style={{ color: '#4B5563' }}>Years Learning</p>
+          </GlassCard>
         </motion.div>
 
-        <motion.div {...fadeUp(0.26)} className="md:col-span-8">
-          <Card className="min-h-[100px] md:min-h-[140px] p-6 md:p-8 flex flex-col justify-center gap-3" style={{ borderColor: 'rgba(99,102,241,0.2)' }}>
-            <p className="text-[11px] uppercase tracking-widest" style={{ color: 'var(--text-muted)' }}>Quote</p>
-            <p className="text-lg md:text-2xl font-bold leading-snug" style={{ color: 'var(--text-primary)' }}>
+        {/* Quote */}
+        <motion.div {...fadeUp(0.24)} className="md:col-span-9">
+          <GlassCard className="min-h-[100px] md:min-h-[130px] p-7 flex flex-col justify-center gap-2"
+            style={{ background: 'rgba(124,92,252,0.04)', border: '1px solid rgba(124,92,252,0.12)' }}
+          >
+            <p className="text-[10px] uppercase tracking-[0.25em]" style={{ color: '#4B5563' }}>Mantra</p>
+            <p className="text-lg md:text-2xl font-bold leading-snug" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
               "Code is like poetry —{' '}
-              <span className="text-accent">it should be elegant.</span>"
+              <span className="gradient-text">it should be elegant.</span>"
             </p>
-          </Card>
+          </GlassCard>
         </motion.div>
 
         {/* Contact CTA */}
-        <motion.div {...fadeUp(0.32)} className="md:col-span-12">
-          <Card onClick={() => navigate('/contact')} className="group px-6 md:px-8 py-6 md:py-8 flex items-center justify-between gap-4">
+        <motion.div {...fadeUp(0.28)} className="md:col-span-12">
+          <GlassCard
+            onClick={() => navigate('/contact')}
+            className="px-8 py-7 flex items-center justify-between gap-4"
+            style={{ background: 'linear-gradient(135deg, rgba(124,92,252,0.08), rgba(0,229,255,0.04))', border: '1px solid rgba(124,92,252,0.15)' }}
+          >
             <div>
-              <p className="font-bold text-lg md:text-2xl" style={{ color: 'var(--text-primary)' }}>Punya proyek menarik?</p>
-              <p className="text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>Mari wujudkan bersama — saya siap berkolaborasi.</p>
+              <p className="font-black text-xl md:text-2xl mb-1" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
+                Punya proyek menarik?
+              </p>
+              <p className="text-sm" style={{ color: '#9CA3AF' }}>Mari wujudkan bersama — saya siap berkolaborasi.</p>
             </div>
             <motion.div
               whileHover={{ x: 6 }}
               transition={{ type: 'spring', stiffness: 300 }}
-              className="flex items-center gap-2 text-accent font-medium text-sm flex-shrink-0"
+              className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ background: 'linear-gradient(135deg, #7C5CFC, #4F8CFF)', boxShadow: '0 0 20px rgba(124,92,252,0.3)' }}
             >
-              <ArrowUpRight size={18} />
+              <ArrowUpRight size={18} style={{ color: 'white' }} />
             </motion.div>
-          </Card>
+          </GlassCard>
         </motion.div>
 
       </div>

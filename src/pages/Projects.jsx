@@ -19,11 +19,11 @@ const Projects = () => {
         <div>
 
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="mb-16">
-            <p className="text-accent text-sm tracking-widest uppercase mb-4">Portofolio</p>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6" style={{ color: 'var(--text-primary)' }}>
+            <p className="text-sm tracking-widest uppercase mb-4 gradient-text font-medium">Portofolio</p>
+            <h1 className="text-5xl md:text-7xl font-black mb-6" style={{ fontFamily: 'Syne, sans-serif', color: 'white' }}>
               Proyek Pilihan
             </h1>
-            <p className="text-lg max-w-xl" style={{ color: 'var(--text-secondary)' }}>
+            <p className="text-lg max-w-xl" style={{ color: '#9CA3AF' }}>
               Kumpulan proyek yang telah saya kerjakan. Klik untuk melihat detail.
             </p>
           </motion.div>
