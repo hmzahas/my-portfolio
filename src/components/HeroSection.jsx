@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Mail, Clock, Download } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Clock, Download } from 'lucide-react';
 
 const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
   id: i,
